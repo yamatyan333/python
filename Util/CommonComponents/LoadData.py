@@ -1,15 +1,15 @@
+import os
 import struct
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Sample File
-#path1 = "/home/yamac/python/Util/Data/MNIST/t10k-images-idx3-ubyte"
-#path2 = "/home/yamac/python/Util/Data/MNIST/t10k-labels-idx1-ubyte"
-#path3 = "/home/yamac/python/Util/Data/MNIST/train-images-idx3-ubyte"
-#path4 = "/home/yamac/python/Util/Data/MNIST/train-labels-idx1-ubyte"
+# Data File Path
+path_train_imgs = os.path.abspath("~/python/Util/Data/MNIST/train-images-idx3-ubyte")
+path_train_lbls = os.path.abspath("~/python/Util/Data/MNIST/train-labels-idx1-ubyte")
+path_test_imgs = os.path.abspath("~/python/Util/Data/MNIST/t10k-images-idx3-ubyte")
+path_test_lbls = os.path.abspath("~/python/Util/Data/MNIST/t10k-labels-idx1-ubyte")
 
-
-def ReadMNISTBinaryImageFile(path):
+def __ReadMNISTBinaryImageFile(path):
 
     # Return value
     imgArray = np.empty
@@ -45,7 +45,7 @@ def ReadMNISTBinaryImageFile(path):
     return imgArray
 
 
-def ReadMNISTBinaryLabelFile(path):
+def __ReadMNISTBinaryLabelFile(path):
     lblArray = np.empty
 
     # Read file
@@ -69,3 +69,15 @@ def ReadMNISTBinaryLabelFile(path):
     print("MNIST Binary Labels are loaded successfully!\n")
     return lblArray
 
+
+def ReadMNISTTrain_BinaryImageFile():
+    return __ReadMNISTBinaryImageFile(path_train_imgs)
+
+def ReadMNISTTrain_BinaryLabelFile():
+    return __ReadMNISTBinaryLabelFile(path_train_lbls)
+
+def ReadMNISTTest_BinaryImageFile():
+    return __ReadMNISTBinaryImageFile(path_test_imgs)
+
+def ReadMNISTTest_BinaryLabelFile():
+    return __ReadMNISTBinaryLabelFile(path_test_lbls)
