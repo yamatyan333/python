@@ -1,4 +1,3 @@
-import os
 import numpy as np
 import pickle as pickle
 import Util.CommonComponents.ActivationFunctions as af
@@ -26,7 +25,6 @@ learning_rate = 0.01
 
 ######################################
 
-
 # Load Data
 train_imgs = ld.ReadMNISTTrain_BinaryImageFile()
 train_lbls = ld.ReadMNISTTrain_BinaryLabelFile()
@@ -39,22 +37,31 @@ test_lbls = ld.ReadMNISTTest_BinaryLabelFile()
 
 for epoch in range(0, epoch_number):
     # batch 0 -> 60,000 
-    for batch_itr in range(0, np.shape(train_lbls)[0], batch_size):
+    for batch_itr in range(batch_size, np.shape(train_lbls)[0] - 1, batch_size):
+        print(batch_itr)
 
         # Mini Batch Data 
-        x = train_imgs[ batch_itr : batch_itr + batch_size - 1 ]
-        t = train_lbls[ batch_itr : batch_itr + batch_size - 1 ]
+        x = (train_imgs[ batch_itr - batch_size : batch_itr - 1 ]) / 255
+        t = train_lbls[ batch_itr - batch_size : batch_itr - 1 ] 
         t = np.identity(10)[t] # to One-Hot Label
-        a = np.dot(x, w1)
+        a = np.dot(x, w1) 
         z = af.SigmoidFunction(a)
         y = np.dot(z, w2)
         #plt.show(plt.imshow(np.reshape(x[0], (28,28))))
         #print(t[0])
         #exit()
-    
+        
+        print("=========================")
         dw1 = np.dot(x.T, (z * (1 - z) * (np.dot((y-t), w2.T))))
         dw1 = np.sum(dw1, axis=0)/batch_size 
-
+        print(np.shape(x) )
+        print(np.shape(w1))
+        #print(a)
+        #print(z)
+        print(y)
+        #print(t)
+        print("=========================")
+        exit()
         # Update Hidden Layer Weight
         dw2 = np.dot(z.T, (y-t))
         dw2 = np.sum(dw2, axis=0)/batch_size
@@ -67,9 +74,3 @@ for epoch in range(0, epoch_number):
 
 
 
-
-
-
-
-
-    

@@ -4,10 +4,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Data File Path
-path_train_imgs = os.path.abspath("~/python/Util/Data/MNIST/train-images-idx3-ubyte")
-path_train_lbls = os.path.abspath("~/python/Util/Data/MNIST/train-labels-idx1-ubyte")
-path_test_imgs = os.path.abspath("~/python/Util/Data/MNIST/t10k-images-idx3-ubyte")
-path_test_lbls = os.path.abspath("~/python/Util/Data/MNIST/t10k-labels-idx1-ubyte")
+path_train_imgs = os.path.abspath("/home/yamac/python/Util/Data/MNIST/train-images-idx3-ubyte")
+path_train_lbls = os.path.abspath("/home/yamac/python/Util/Data/MNIST/train-labels-idx1-ubyte")
+path_test_imgs = os.path.abspath("/home/yamac/python/Util/Data/MNIST/t10k-images-idx3-ubyte")
+path_test_lbls = os.path.abspath("/home/yamac/python/Util/Data/MNIST/t10k-labels-idx1-ubyte")
 
 def __ReadMNISTBinaryImageFile(path):
 
